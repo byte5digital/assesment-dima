@@ -23,11 +23,18 @@ use App\Http\Controllers\PromoterController;
 
  /**
  * get promotersPromoterIdGet
- * Summary: Read a promoter
+ * Summary: Read a promoter with skills
  * Notes: 
  * Output-Formats: [application/json]
  */
 Route::get('/promoters/{promoterId}', [PromoterController::class, 'promotersPromoterIdGet']);
+
+ /**
+ * get promotersGet
+ * Summary: List all promoters
+ * Notes: 
+ * Output-Formats: [application/json]
+ */
 Route::get('/promoters', [PromoterController::class, 'promotersGet']);
 
 /*
