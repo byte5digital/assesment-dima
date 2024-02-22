@@ -1,0 +1,103 @@
+openapi: '3.0.0'
+info:
+  version: '1.0.0'
+  title: 'Promoter API'
+  description: List promoters or a single promoter with skills.
+
+paths:
+  /promoters/{promoterId}:
+    parameters:
+      - name: promoterId
+        description: The unique identifier of the promoter
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/promoterId'
+    get:
+      summary: Read a promoter
+      responses:
+        '200':
+          description: The promoter corresponding to the provided `promoterId`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/employee'
+        404:
+          description: No promoter found for the provided `promoterId`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /promoters:
+    get:
+      summary: List promoters
+      responses:
+        '200':
+          description: The promoter corresponding to the provided `promoterId`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/promoter'
+        404:
+          description: No promoter found for the provided `promoterId`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    promoterId:
+      description: Unique identifier of a promoter
+      type: string
+    employee:
+      type: object
+      required:
+        - id
+        - first_name
+	- last_name
+	- group_id
+	- created_at
+        - updated_at
+      properties:
+        id:
+          $ref: '#/components/schemas/employeeId'
+        first_name:
+          type: string
+        last_name:
+          type: string
+        group_id:
+          type: integer
+        created_at:
+          type: timestamp
+        updated_at:
+          type: timestamp
+    employeeId:
+      description: Unique identifier of a employee
+      type: string
+    Error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          description: sorry, something went wrong
+          type: string
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+security:
+  - ApiKey: []
