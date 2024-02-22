@@ -66,9 +66,9 @@ components:
       required:
         - id
         - first_name
-	- last_name
-	- group_id
-	- created_at
+      	- last_name
+      	- group_id
+	      - created_at
         - updated_at
       properties:
         id:
