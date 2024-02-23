@@ -113,15 +113,15 @@ class PromoterController extends Controller
                 foreach($skills as $skill) {
                     $skillList[] = $skill->toArray();
                 }
-                #$skillList[] = json_encode($skills);
+
             }
             $promoter = $employee->toArray();
             
             $promoter[0]['skills'] = $skillList;
             return response($promoter);
-            return response()->json($output); //todo: this is not an yaml, xml, json or whatever
+            return response()->json($output); 
 
-            return response()->json($employee); //todo: this is not an yaml, xml, json or whatever
+            return response()->json($employee); 
         }
     }
 
