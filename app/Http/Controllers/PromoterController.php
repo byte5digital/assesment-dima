@@ -118,10 +118,7 @@ class PromoterController extends Controller
             $promoter = $employee->toArray();
             
             $promoter[0]['skills'] = $skillList;
-            return response($promoter);
-            return response()->json($output); 
-
-            return response()->json($employee); 
+            return response()->json($promoter);
         }
     }
 
